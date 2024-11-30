@@ -19,10 +19,13 @@ function MyComponent(){
         <>
             <div>
                 <p>Your favourite car is: {car.year} {car.make} {car.model}</p>
+                
                 <label>Year: </label>
                 <input type='number' id="year" value={car.year} onChange={handleYearChange}/><br/>
+
                 <label>Make: </label>
                 <input type='text' value={car.make} onChange={handleMakeChange}/><br/>
+
                 <label>Model: </label>
                 <input type='text' value={car.model} onChange={handleModelChange}/>
             </div>
