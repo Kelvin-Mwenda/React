@@ -1,57 +1,88 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-//import TodoList from './TodoList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons/faPenToSquare';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 uuidv4()
 
 export default function AddItem() {
     const [todos, setTodo] = useState([]);
-    const [value,setValue] = useState('');
+    const [value, setValue] = useState(''); // Initialize as empty string
+    const [editId, setEditId] = useState(null); // State to track which todo is being edited
 
     const handleSubmit = e => {
         e.preventDefault();
-        addTodo(value)
-        console.log(value)
-    }
+        if (editId) {
+            editTodo(editId); // Call editTodo if we are editing
+        } else {
+            addTodo(value); // Otherwise, add a new todo
+        }
+        setValue(''); // Clear input after submission
+        setEditId(null); // Reset editId after submission
+    };
 
-    function addTodo(todo){
-        // Prevent adding empty tasks
-        if (todo.trim() !== ''){
-            setTodo(t => ([...t,{id: uuidv4(),task: todo, completed: false, isEditing: false}]))
-            setValue('')
+    function addTodo(todo) {
+        if (todo.trim() !== '') {
+            setTodo(t => ([...t, { id: uuidv4(), task: todo, completed: false }]));
         }
     }
 
-    function deleteTask(index){
-        const updatedTodos = todos.filter((_,i) => i !== index)
-        setTodo(updatedTodos)
+    function editTodo(id) {
+        setTodo(todos.map(t => t.id === id ? { ...t, task: value } : t)); // Update task with current value
+        setEditId(null); // Reset editId after editing
     }
 
+    function deleteTask(id) {
+        setTodo(todos.filter(t => t.id !== id));
+    }
+
+    function completed(id) {
+        setTodo(todos.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
+    }
 
     return (
         <>
             <div className="add-div">
                 <h1>Add Task</h1>
-                <form className="addForm" onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Add Task" value={value} onChange={(e) => setValue(e.target.value)}/>
-                    <button type="submit" className="todo-btn" onClick={handleSubmit}>Add Task</button>
+                <form onSubmit={handleSubmit}>
+                    <input 
+                        type="text" 
+                        placeholder="Add Task" 
+                        value={value} 
+                        onChange={(e) => setValue(e.target.value)} 
+                        className="todo-input" 
+                    />
+                    <button type="submit" className="todo-btn">{editId ? 'Update Task' : 'Add Task'}</button>
                 </form>
 
-                <div className="list">
+                <div className="todo-list">
                     <ul>
-                        {todos.map((plan, index) => {
-                            return(
-                                    <li key={index}>
-                                        <span>{plan.task}</span>
-                                        <button onClick={() => deleteTask(index)}>Delete</button>
-                                    </li>
-                                )
-                            })
-                        }
+                        {todos.map(plan => (
+                            <li key={plan.id} className="Todo">
+                                {editId === plan.id ? (
+                                    <form onSubmit={handleSubmit}>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Update Task" 
+                                            value={value} 
+                                                onChange={(e) => setValue(e.target.value)} 
+                                            className="todo-input" 
+                                        />
+                                        <button type="submit" className="todo-btn">Update Task</button>
+                                    </form>
+                                ) : (
+                                    <>
+                                        <p onClick={() => completed(plan.id)} className={plan.completed ? 'completed' : ""}>{plan.task}</p>
+                                        <FontAwesomeIcon icon={faPenToSquare} onClick={() => { setEditId(plan.id); setValue(plan.task); }} className="edit-icon" />
+                                        <FontAwesomeIcon icon={faTrash} onClick={() => deleteTask(plan.id)} className="delete-icon" />
+                                    </>
+                                )}
+                            </li>
+                        ))}
                     </ul>
                 </div>
-                
             </div>
         </>
-    )
+    );
 }
-0
+
