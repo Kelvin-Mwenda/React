@@ -59,7 +59,7 @@ export default function Weather() {
 
         <div className="results">
           <h1>{weather.temperature} ℃</h1>
-          <p>{weather.location}</p>
+          <p style={{fontFamily: "'Nothing You Could Do', cursive"}}>{weather.location}</p>
         </div>
 
         <p className="description">{weather.description}</p>

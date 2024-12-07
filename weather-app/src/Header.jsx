@@ -4,7 +4,7 @@ export default function Header(){
                 <div className="header">
                     <div className="app-logo">
                         <img src="./src/assets/choco_cloud.jpg" alt="List Icon" className="logo" />
-                        <h2>Choco <span style={{color:'#10a702'}}>Weather App</span></h2>
+                        <h2 style={{fontFamily: "'Nothing You Could Do', cursive"}}>Choco <span style={{color:'#10a702'}}>Weather App</span></h2>
                     </div>
                     <div className="menu">
                         <ul>
