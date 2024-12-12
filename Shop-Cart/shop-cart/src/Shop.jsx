@@ -1,5 +1,3 @@
-//import Header from './Header.jsx'
-import { useLoaderData } from "react-router-dom"
 import { Button } from 'react-bootstrap';
 import { faAngleDoubleLeft, faAngleDoubleRight, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,9 +5,53 @@ import 'react-bootstrap';
 import 'bootstrap/scss/bootstrap.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import { chocolateCakes } from "./chocolate";
+import { useState } from 'react';
 
 export default function Shop() {
-  const chocoCakes = useLoaderData()
+  const [cart, setCart] = useState([]);
+
+  const addItem = (item) => {
+    setCart(prevCart => {
+        const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
+        if (existingItem) {
+            return prevCart.map(cartItem =>
+              cartItem.id === item.id
+              ? { ...cartItem, quantity: cartItem.quantity + 1,totalQuantity: (item.quantity + 1) * item.price }
+              : cartItem
+            );
+          }
+        else {
+          return [...prevCart, { ...item, quantity: 1 }];
+        }
+      }
+    )
+  }
+
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
+  const totalPrice = cart.reduce((total, item) => total + item.totalQuantity, 0);
+
+  const removeItem = (id) => {
+    setCart(c => c.filter(item => item.id !== id))
+  }
+
+  const addQuantity = (id) => {
+    setCart(prevCart => 
+        prevCart.map(item => 
+            item.id === id ? { ...item, quantity: item.quantity + 1, totalQuantity: (item.quantity + 1) * item.price } : item
+        )
+    );
+}
+
+const reduceQuantity = (id) => {
+    setCart(prevCart => 
+        prevCart.map(item => 
+            item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1, totalQuantity: (item.quantity - 1) * item.price} : item
+        )
+    );
+}
+
 
   function scrollleft(){
     var left = document.querySelector('.testimonial');
@@ -32,7 +74,7 @@ export default function Shop() {
         <div className="menu">
             <ul>
                 <li><a href="#">Shop</a></li>
-                <li><a href="#task">Cart</a></li>
+                <li><a href="#task"><i className="fas fa-cart-plus">1</i></a></li>
                 <li><a href="#task">Contact</a></li>
             </ul>
         </div>
@@ -51,26 +93,26 @@ export default function Shop() {
           
           <div className="testimonial">
             {
-              chocoCakes.map(cake => (
+              chocolateCakes.map(cake => (
                 <div key={cake.id}  className="testimonial-text">
                   <div className="testimonial-image">
                     <img src={`../src/assets/${cake.image}.jpg`} alt={`${cake.name}`} className="test-image"/>
                   </div>
 
                   <div className="test-text">
-                      <h3 className="text-center fw-bold" style={{fontFamily: "'Nothing You Could Do', cursive",color: '#070707',fontSize: '1.2rem'}}>
-                        {`${cake.name}`}
-                      </h3>
-                      <p className="text-center" style={{maxWidth:'150px',fontSize: '0.85rem'}}>
-                        {cake.description}
-                      </p>
-                      <p className="text-center fw-bold">
-                        {`Ksh. ${cake.price}.00`}
-                      </p>
+                    <h3 className="text-center fw-bold" style={{fontFamily: "'Nothing You Could Do', cursive",color: '#070707',fontSize: '1.2rem'}}>
+                      {`${cake.name}`}
+                    </h3>
+                    <p className="text-center" style={{maxWidth:'150px',fontSize: '0.85rem'}}>
+                      {cake.description}
+                    </p>
+                    <p className="text-center fw-bold">
+                      {`Ksh. ${cake.price}.00`}
+                    </p>
 
-                      <Button className="shop-icon">
-                        <FontAwesomeIcon icon={faCartShopping} />
-                      </Button>
+                    <Button className="shop-icon" onClick={() => addItem(cake)}>
+                      <FontAwesomeIcon icon={faCartShopping} />
+                    </Button>
                   </div>
               </div>
               ))
@@ -84,19 +126,66 @@ export default function Shop() {
           </div>
         </div>
 
+      </div>
 
+      <div className="Cart">
+        {
+          cart.length === 0 ? (
+            <h2></h2>
+        ): (
+          <div>
+            <h1>Your Cart</h1>
+            <p style={{fontFamily: "'Nothing You Could Do', cursive",color:'green'}}>{totalItems} Items</p>
+          </div>
+          
+        )
+        }
+        
+      </div>
+      <div className="cart">
+        {
+          cart.length === 0 ? (
+            <h2 style={{fontFamily: "'Nothing You Could Do', cursive"}}>Your cart is empty.</h2>
+          ) : 
+          (
+            cart.map((item,index) => (
+                <div className="cart-item" key={index}>
+                  <div>
+                    <img className="cart-image" src={`../src/assets/${item.image}.jpg`} alt={item.description} />
+                    <h1 style={{fontFamily: "'Nothing You Could Do', cursive"}}>{item.name}</h1>
+                  </div>
+                  
+                  <div>
+                    <p style={{fontWeight:'bold'}}><span style={{fontFamily: "'Nothing You Could Do', cursive",fontSize:'1.2rem',fontWeight:'bold',margin:'20px auto'}}>Price: Ksh.</span> {item.price}.00</p>
+                    <p><span style={{fontFamily: "'Nothing You Could Do', cursive",fontSize:'1.2rem',fontWeight:'bold',margin:'20px auto'}}>Quantity:</span> {item.quantity}</p>
+                    <p><span style={{fontFamily: "'Nothing You Could Do', cursive",fontSize:'1.2rem',fontWeight:'bold',margin:'20px auto'}}>Total: Ksh.</span> {item.totalQuantity}.00</p>
+
+                    
+                    <div>
+                      <button onClick={() => reduceQuantity(item.id)} style={{background:'green', border:'none',borderRadius:'4px',padding:'6px 10px',margin:'20px',color:'white',fontWeight:'bold'}}>
+                        -
+                      </button>
+                      {item.quantity}
+                      <button onClick={() => addQuantity(item.id)} style={{background:'green', border:'none',borderRadius:'4px',padding:'6px 10px',margin:'20px',color:'white',fontWeight:'bold'}}>
+                        +
+                      </button>
+                    </div>
+                    
+
+                    <button onClick={() => removeItem(item.id)} style={{background:'#BC0305', border:'none',borderRadius:'4px',padding:'4px 6px',margin:'20px'}}>
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              )
+            )
+          )
+        }
+      </div>
+
+      <div>
+        <h1 style={{fontFamily: "'Nothing You Could Do', cursive"}}>Total: Ksh. {totalPrice}.00</h1>
       </div>
     </>
   )
 }
-
-
-export const itemsLoader = async () => {
-    const res = await fetch('http://localhost:4000/chocolateCakes')
-
-    if(!res.ok){
-      throw new Error('Could not find the shop cakes...')
-    }
-
-    return res.json()
-  }
