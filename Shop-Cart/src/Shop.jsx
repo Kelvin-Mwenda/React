@@ -137,7 +137,7 @@ export default function Shop({ cakes, addItem,cart, removeItem, addQuantity, red
                   </button>
 
                   {/* Remove Item Button */}
-                  <button onClick={() => removeItem(item.id)} style={{padding:'4px 20px',color:'white',background:'red',border:'none',borderRadius:'4px',margin:'auto 20px',fontWeight:'bold'}}>Remove</button>
+                  <button onClick={() => removeItem(item.id)} style={{padding:'4px 20px',color:'white',background:'#bc080a',border:'none',borderRadius:'4px',margin:'auto 20px',fontWeight:'bold'}}>Remove</button>
                 </div>
               ))
             )
