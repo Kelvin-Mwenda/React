@@ -271,3 +271,13 @@
   border-radius: 4px;
   box-shadow: 2px 3px 4px grey;
 }
+
+/* Cart Page */
+.cart-page{
+  margin: auto;
+  display: none;
+}
+
+.cart-page h1{
+  color: rgb(5, 125, 85);
+}
