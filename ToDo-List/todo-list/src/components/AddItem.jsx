@@ -42,6 +42,7 @@ export default function AddItem() {
 
     return (
         <>
+            <div id="task"></div>
             <div className="add-div">
                 <h1>Add Task</h1>
                 <form onSubmit={handleSubmit}>
@@ -50,7 +51,7 @@ export default function AddItem() {
                         placeholder="Add Task" 
                         value={value} 
                         onChange={(e) => setValue(e.target.value)} 
-                        className="todo-input" 
+                        className="todo-input" id='about'
                     />
                     <button type="submit" className="todo-btn">{editId ? 'Update Task' : 'Add Task'}</button>
                 </form>
