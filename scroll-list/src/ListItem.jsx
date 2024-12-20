@@ -6,7 +6,7 @@ export default function ListItem({item}) {
   return (
     <div className='List-item' style={{border:'1px solid #ddd', margin: '10px auto', padding:'10px',maxWidth:'800px'}}>
       <h2>{item.title}</h2>
-      <img src={item.image} alt={item.body} />
+      <img src={`./src/assets/${item.image}`} alt={item.body}  className="item-image"/>
       <p>{item.body}</p>
     </div>
   )

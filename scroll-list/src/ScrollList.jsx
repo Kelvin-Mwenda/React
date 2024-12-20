@@ -22,6 +22,7 @@ export default function ScrollList() {
 
   return (
     <div className="List">
+      <h1 style={{color:'black', textAlign:'center',fontSize:'50px',margin:'20px 0'}}>Movie List</h1>
       {data.map((item) => (
         <ListItem key={item.id} item={item}/>
       ))}
