@@ -17,7 +17,7 @@ export default function App() {
         if (existingItem) {
             return prevCart.map(cartItem =>
               cartItem.id === item.id
-              ? { ...cartItem, quantity: cartItem.quantity + 1,totalQuantity: (item.quantity + 1) * item.price }
+              ? { ...cartItem, quantity: cartItem.quantity + 1,totalQuantity: (cartItem.quantity + 1) * item.price }
               : cartItem
             );
           }
@@ -27,8 +27,6 @@ export default function App() {
       }
     )
   }
-
-  
 
   const removeItem = (id) => {
     setCart(c => c.filter(item => item.id !== id))
@@ -53,7 +51,7 @@ export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={<Home/>} errorElement={<h1 style={{fontFamily: "'Nothing You Could Do', cursive",textAlign:"text-center"}}>404 Not Found!</h1>}/>
+        <Route path="/" element={<Home/>} errorElement={<h1 style={{textAlign:"text-center"}}>404 Not Found!</h1>}/>
           <Route index element={<Shop cakes={chocolateCakes} addItem={addItem} cart={cart} removeItem={removeItem} addQuantity={addQuantity} reduceQuantity={reduceQuantity}/>}/>
           <Route path="cart" element={<Cart/>}/>
           <Route path="*" element={<h1 style={{fontFamily: "'Nothing You Could Do', cursive",textAlign:"text-center"}}>404 Not Found!</h1>}/>

@@ -25,23 +25,23 @@ export default function Shop({ cakes, addItem,cart, removeItem, addQuantity, red
 
   return (
     <>
-      <div className="header" style={{ fontFamily: "'Nothing You Could Do', cursive" }}>
+      <div className="header">
         <div className="app-logo">
           <img src="../src/assets/cart.png" alt="Shop Icon" className="logo" />
-          <h2 style={{ fontFamily: "'Nothing You Could Do', cursive", color: '#a04a04' }}>Choco <span style={{ color: '#070707' }}>Shop Cart App</span></h2>
+          <h2 style={{ color: '#a04a04' }}>Choco <span style={{ fontFamily: "'Nothing You Could Do', cursive", color:'#10a702' }}>Shop Cart App</span></h2>
         </div>
 
         <div className="menu">
           <ul>
             <li><a href="/">Shop</a></li>
-            <li><a href="/cart"><i className="fas fa-cart-plus">Cart</i></a></li>
+            <li><a href="/cart">Cart</a></li>
             <li><a href="#task">Contact</a></li>
           </ul>
         </div>
       </div>
 
       <div className="shop-list">
-        <h1 style={{ fontFamily: "'Nothing You Could Do', cursive", fontSize: '1.5rem', fontWeight: 'bold' }}>Welcome to Choc&#39;s Shop</h1>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Welcome to Choc&#39;s Shop</h1>
 
         <div className="testimonial-container">
           <div className="scroll-button">
@@ -59,7 +59,7 @@ export default function Shop({ cakes, addItem,cart, removeItem, addQuantity, red
                   </div>
 
                   <div className="test-text">
-                    <h3 className="text-center fw-bold" style={{ fontFamily: "'Nothing You Could Do', cursive", color: '#070707', fontSize: '1.2rem' }}>
+                    <h3 className="text-center fw-bold" style={{ color: '#070707', fontSize: '1.2rem' }}>
                       {`${cake.name}`}
                     </h3>
                     <p className="text-center" style={{ maxWidth: '150px', fontSize: '0.85rem' }}>
@@ -88,9 +88,9 @@ export default function Shop({ cakes, addItem,cart, removeItem, addQuantity, red
 
         {/* Cart Summary */}
         {totalItems > 0 && (
-          <div className="Cart">
+          <div className="Cart mb-5">
             <h1>Your Cart</h1>
-            <p style={{ fontFamily: "'Nothing You Could Do', cursive", color:'green' }}>{totalItems} Items</p>
+            <p style={{ color:'green' }}>{totalItems} Items</p>
           </div>
         )}
 
@@ -98,46 +98,53 @@ export default function Shop({ cakes, addItem,cart, removeItem, addQuantity, red
         <div className="cart">
           {
             cart.length === 0 ? (
-              <h1 style={{ fontFamily: "'Nothing You Could Do', cursive" }}>Your cart is empty.</h1>
+              <h1 >Your cart is empty.</h1>
             ) : (
               cart.map((item) => (
                 <div className="cart-item" key={item.id}>
                   {/* Item Display */}
                   <img className="cart-image" src={`../src/assets/${item.image}.jpg`} alt={item.description} />
-                  <h1 style={{ fontFamily: "'Nothing You Could Do', cursive" }}>{item.name}</h1>
 
-                  {/* Price and Quantity Display */}
-                  <p>
-                    <span style={{ fontFamily: "'Nothing You Could Do', cursive",fontSize:'1.2rem',fontWeight:'bold'}}>Price:</span>
-                    <br/> 
-                    Ksh.{item.price}.00
-                  </p>
+                  <div className="item-details">
+                    <h1>{item.name}</h1>
 
-                  <p>
-                    <span style={{ fontFamily: "'Nothing You Could Do', cursive",fontSize:'1.2rem',fontWeight:'bold'}}>
-                      Quantity:
-                      <br/>
-                    </span> 
-                    {item.quantity}
-                  </p>
+                    {/* Price and Quantity Display */}
+                    <p>
+                      <span style={{fontSize:'1.2rem',fontWeight:'bold'}}>Price:</span>
+                      <br/> 
+                      Ksh.{item.price}.00
+                    </p>
 
-                  <p><span style={{ fontFamily: "'Nothing You Could Do', cursive",fontSize:'1.2rem',fontWeight:'bold'}}>Total:</span><br/> Ksh.{item.totalQuantity}.00</p>
+                    <p>
+                      <span style={{ fontSize:'1.2rem',fontWeight:'bold'}}>
+                        Quantity:
+                        <br/>
+                      </span> 
+                      {item.quantity}
+                    </p>
 
-                  {/* Quantity Controls */}
-                  <button onClick={() => { 
-                    {if(item.quantity === 1){ item.quantity === 1 ? removeItem(item.id):reduceQuantity(item.id)}else{reduceQuantity(item.id), totalItems = cart.reduce((total, item) => total + item.quantity, 0), totalPrice = cart.reduce((total, item) => total + item.totalQuantity, 0)}}
-                      }} style={{padding:'4px 20px',color:'white',background:'green',border:'none',borderRadius:'4px',margin:'auto 20px',fontWeight:'bold'}}>
-                    -
-                  </button>
+                    <p><span style={{fontSize:'1.2rem',fontWeight:'bold'}}>Total:</span><br/> Ksh.{item.totalQuantity}.00</p>
 
-                  {item.quantity}
+                    <div className='mx-3'>
+                        <button onClick={() => { 
+                        {if(item.quantity === 1){ item.quantity === 1 ? removeItem(item.id):reduceQuantity(item.id)}else{reduceQuantity(item.id), totalItems = cart.reduce((total, item) => total + item.quantity, 0), totalPrice = cart.reduce((total, item) => total + item.totalQuantity, 0)}}
+                          }} style={{padding:'4px 20px',color:'white',background:'green',border:'none',borderRadius:'4px',margin:'auto 20px',fontWeight:'bold'}}>
+                        -
+                      </button>
 
-                  <button onClick={() => {addQuantity(item.id), totalItems = cart.reduce((total, item) => total + item.quantity, 0), totalPrice = cart.reduce((total, item) => total + item.totalQuantity, 0)}} style={{padding:'4px 20px',color:'white',background:'green',border:'none',borderRadius:'4px',margin:'auto 20px',fontWeight:'bold'}}>
-                    +
-                  </button>
+                      {item.quantity}
 
-                  {/* Remove Item Button */}
-                  <button onClick={() => removeItem(item.id)} style={{padding:'4px 20px',color:'white',background:'#bc080a',border:'none',borderRadius:'4px',margin:'auto 20px',fontWeight:'bold'}}>Remove</button>
+                      <button onClick={() => {addQuantity(item.id), totalItems = cart.reduce((total, item) => total + item.quantity, 0), totalPrice = cart.reduce((total, item) => total + item.totalQuantity, 0)}} style={{padding:'4px 20px',color:'white',background:'green',border:'none',borderRadius:'4px',margin:'auto 20px',fontWeight:'bold'}}>
+                        +
+                      </button>
+                    </div>
+                      {/* Quantity Controls */}
+                      
+
+                      {/* Remove Item Button */}
+                      <button onClick={() => removeItem(item.id)} style={{padding:'4px 20px',color:'white',background:'#bc080a',border:'none',borderRadius:'4px',margin:'20px 20px',fontWeight:'bold'}}>Remove</button>
+                  </div>
+                  
                 </div>
               ))
             )
@@ -146,7 +153,15 @@ export default function Shop({ cakes, addItem,cart, removeItem, addQuantity, red
 
         {/* Total Price Display */}
         { cart.length > 0 ? (<div>
-            <h1 style={{ fontFamily: "'Nothing You Could Do', cursive" }}>
+            <h1 style={{
+              position: 'fixed',
+              right: '-20px', // Adjust as needed to align with `testimonial`
+              top: '50%', // Adjust as needed for vertical alignment
+              transform: 'translateY(-50%)', // Centers vertically
+              backgroundColor: '#fff',
+              padding: '10px 20px',
+              zIndex: 1000, // Ensure it's above other content
+            }} className=''>
               Total: Ksh. {totalPrice}.00</h1>
             </div>) :
           null
