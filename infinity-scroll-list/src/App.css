@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'poppins', Geneva, Tahoma, sans-serif;
+}
+
+/* header */
+.header{
+  background-color: #fff;
+  color: #502502;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;  
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #087d01;
+  position: fixed;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.app-logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  font-family: 'poppins', Geneva, Tahoma, sans-serif;
+}
+
+.logo {
+  height: 70px;
+  width: 100px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.loader {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+.List-item{
+  border: 1px solid grey;
+  margin: 20px auto;
+  padding: 10px;
+  max-width: 600px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  transition: all ease-in-out 0.35s;
+}
+.List-item P{
+  align-items: start;
+  text-align: left;
+}
+.List-item:hover{
+  box-shadow: 2px 3px 4px grey;
+  transform: scale(1.05);
+}
+
+.Scroll-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: auto 20px;
+}
