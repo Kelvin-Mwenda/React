@@ -1,7 +1,7 @@
 
 # Project Plan: Building a Simple Chat Application in React
 
-# Phase 1: Planning and Requirements
+## Phase 1: Planning and Requirements
 
 Define the Features:
 
@@ -15,27 +15,27 @@ Define the Features:
 
 - Technical Stack:
 
-* Frontend: React (for UI components).
+a. Frontend: React (for UI components).
 
-* Backend: Node.js with WebSocket (for real-time communication) or a service like Firebase.
+b. Backend: Node.js with WebSocket (for real-time communication) or a service like Firebase.
 
-* Database: Firebase Firestore, MongoDB, or an in-memory store like Redis (for chat history).
+c. Database: Firebase Firestore, MongoDB, or an in-memory store like Redis (for chat history).
 
-* Hosting: Vercel/Netlify for frontend, Heroku/Render for backend (if applicable).
+d. Hosting: Vercel/Netlify for frontend, Heroku/Render for backend (if applicable).
 
 - Tools and Libraries:
 
-* React Router (for navigation, if needed).
+  React Router (for navigation, if needed).
 
-* Axios (for API calls).
+  Axios (for API calls).
 
-* Socket.io (for WebSocket communication).
+   Socket.io (for WebSocket communication).
 
-* Tailwind CSS/Material-UI/Bootstrap (for styling).
+   Tailwind CSS/Material-UI/Bootstrap (for styling).
 
-# Phase 2: Application Architecture
+## Phase 2: Application Architecture
 
-## Frontend Components:
+### Frontend Components:
 
 - App Component: Entry point for the application.
 
@@ -47,7 +47,7 @@ Define the Features:
 
 - State Management:
 
-* Use React Context API or Zustand for managing global state (e.g., current user, messages).
+ Use React Context API or Zustand for managing global state (e.g., current user, messages).
 
 ### Backend (if not using Firebase):
 
