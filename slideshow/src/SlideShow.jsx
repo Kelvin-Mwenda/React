@@ -1,6 +1,6 @@
+import { slideImages } from './data/slideImages';
 import {Fade} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import { slideImages } from './data/slideImages';
 import './SlideShow.css';
 
 const SlideShow = () => {

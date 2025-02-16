@@ -1,14 +1,12 @@
 .header {
   position: relative;
-  background: linear-gradient(135deg, #975602, #e6b864);
-  padding: auto 0;
+  background: linear-gradient(135deg, #975602c5, #9ebd7ac9);
+  padding: 20px 0;
   text-align: center;
   color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin: -40px -60px 20px;
-  top: 0;
-  right: 0;
-  left: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .header-container {
@@ -23,7 +21,17 @@
   font-weight: bold;
 }
 
-.header p {
+@media (max-width: 480px) {
+  .header h1 {
+    display: none;
+  }
+  .header-container p{
+    font-size: 0.5rem;
+  }
+}
+
+.header-container p {
   margin: 0 auto;
   font-size: 1rem;
 }
+

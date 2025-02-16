@@ -42,3 +42,67 @@
   margin: 0;  /* Remove default margin for a cleaner look */
 }
 
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+  .slide-caption {
+    width: 170px;
+    border-bottom-right-radius: 15px;
+  }
+  
+  .slide-caption h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-caption {
+    display: none;
+  }
+  .parent-container {
+    margin: 20px auto;
+  }
+}
+
+
+/* The container the library uses for fade slides */
+.react-slideshow-container {
+  position: relative;
+}
+
+/* Common base class for arrows */
+.nav.default-nav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 2 !important;
+}
+
+/* Hover effect */
+.nav.default-nav:hover {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Left arrow */
+.nav.default-nav.default-nav-left {
+  left: 10px !important; /* Move inward from window edge */
+}
+
+/* Right arrow */
+.nav.default-nav.default-nav-right {
+  right: 10px !important;
+}
+
+/* The arrow icon itself (an SVG) */
+.nav.default-nav svg {
+  fill: #fff !important;
+  width: 20px !important;
+  height: 20px !important;
+}
