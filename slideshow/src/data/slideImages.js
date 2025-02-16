@@ -27,7 +27,6 @@ export const slideImages = [
     url:'https://drive.google.com/thumbnail?id=14puGVVE31bI8xXl-yjjTaZ2k2raRSK1l&sz=w600-h600',
     caption: 'Network AGM'
   },
-  
 ];
 
 console.log('slideImages:', slideImages);

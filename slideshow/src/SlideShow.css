@@ -14,9 +14,9 @@
   padding: 10px auto;
   position: relative;           /* Allows absolute positioning of the caption */
   width: 50%;
-  height: auto;                 /* A bit smaller than full viewport */
-  background-size: contain;       /* Make sure the background image covers the container */
-  background-position: center;  /* Center the background image */
+  max-height: 500px;                 /* A bit smaller than full viewport */
+  background-size: cover;       /* Make sure the background image covers the container */
+  background-position: top;  /* Center the background image */
   background-repeat: no-repeat;
   display: flex;
   align-items: center;          /* Vertically center content (optional) */
@@ -59,8 +59,23 @@
     display: none;
   }
   .parent-container {
-    margin: 20px auto;
+    margin: 0 auto;
   }
+  .fade-slide {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;           /* Allows absolute positioning of the caption */
+    width: 70%;
+    max-height: 300px;                 /* A bit smaller than full viewport */
+    background-size: cover;       /* Make sure the background image covers the container */
+    background-position: top;  /* Center the background image */
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;          /* Vertically center content (optional) */
+    justify-content: flex-start;  /* Position content left by default */
+    border: none;
+  }
+
 }
 
 
@@ -87,7 +102,8 @@
 
 /* Hover effect */
 .nav.default-nav:hover {
-  background: rgba(0, 0, 0, 0.6) !important;
+  fill: #000000 !important;
+  background: rgb(255, 255, 255) !important;
 }
 
 /* Left arrow */

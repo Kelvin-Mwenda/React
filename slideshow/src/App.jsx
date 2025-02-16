@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <Header/>
-      <h1>My Memories</h1>
       <SlideShow />
     </>
   )

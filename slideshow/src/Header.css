@@ -21,7 +21,10 @@
   font-weight: bold;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
+  .header{
+    margin: 0 auto;
+  }
   .header h1 {
     display: none;
   }
