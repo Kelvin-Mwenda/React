@@ -1,0 +1,44 @@
+/* SlideShow.css */
+
+.parent-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  height: 100vh;           /* Full viewport height */
+}
+
+
+/* Container for each slide */
+.fade-slide {
+  margin: 20px auto;
+  padding: 10px auto;
+  position: relative;           /* Allows absolute positioning of the caption */
+  width: 50%;
+  height: auto;                 /* A bit smaller than full viewport */
+  background-size: contain;       /* Make sure the background image covers the container */
+  background-position: center;  /* Center the background image */
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;          /* Vertically center content (optional) */
+  justify-content: flex-start;  /* Position content left by default */
+  border: solid 2px rgb(95, 88, 88);
+  border-radius: 10px;
+}
+
+
+/* Caption overlay */
+.slide-caption {
+  padding: 20px;
+  width:200px;
+  border-bottom-right-radius:20px;
+  background-color: rgba(117, 64, 2, 0.993);
+  color:rgb(255, 254, 254);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.slide-caption h1 {
+  margin: 0;  /* Remove default margin for a cleaner look */
+}
+

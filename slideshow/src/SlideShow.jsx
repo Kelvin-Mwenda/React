@@ -1,24 +1,29 @@
-import {Slide} from 'react-slideshow-image';
+import {Fade} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import { slideImages } from '../data/slideImages.js';
+import { slideImages } from './data/slideImages';
+import './SlideShow.css';
 
 const SlideShow = () => {
   return(
     <>
-      <Slide autoplay transitionDuration={500}>
+      <Fade autoplay transitionDuration={1000} arrows={true}            // Show arrows
+      indicators={true}        // Show dots (optional)
+      duration={2000}          // How long each slide stays
+      pauseOnHover={true}>
         {slideImages.map((slideImage, index)=>{
-          <div key={index}>
-            <div style={{height: '100vh', backgroundImage: `url(${slideImage.url})`}}>
-              <div style={{padding: 20, width:200, borderBottomRightRadius:'20px',boxShadow: '40px 5px 0 rgba(0,0,0,0.2', backgroundColor: 'rgba(255,255,255,0.8)'}}>
-                <h1>{slideImage.caption}</h1>
+          return(
+            <div key={index} className="parent-container">
+              <div className="fade-slide" style={{height: '100vh', backgroundImage: `url(${slideImage.url})`}}>
+                <div className="slide-caption" style={{padding: 20, width:200, borderBottomRightRadius:'20px'}}>
+                  <h2>{slideImage.caption}</h2>
+                </div>
               </div>
             </div>
-          </div>
+          )
         })}
-      </Slide>
+      </Fade>
     </>
   )
 }
-
 
 export default SlideShow;
