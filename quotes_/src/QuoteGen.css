@@ -1,0 +1,45 @@
+/* Container styling for the quote generator */
+.quote-generator {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  border: 2px solid #008cff;
+  border-radius: 10px;
+}
+
+/* Styling for the quote text */
+.quote-text {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Styling for the quote author */
+.quote-author {
+  font-size: 1.2em;
+  color: #c2bfbf;
+  margin-bottom: 20px;
+}
+
+/* Basic styling for the button */
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the button */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for error messages */
+.error {
+  color: red;
+  font-weight: bold;
+}
